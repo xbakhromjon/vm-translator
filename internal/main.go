@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	"time"
 )
 
 func main() {
@@ -92,7 +91,6 @@ func main() {
 		}
 
 		log.Printf("parsed line: %s \n", parser.current)
-		time.Sleep(time.Second)
 	}
 
 }

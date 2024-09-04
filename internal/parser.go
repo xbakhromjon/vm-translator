@@ -7,7 +7,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
 )
 
 const (
@@ -35,13 +34,11 @@ func (p *Parser) Advance() bool {
 		text := p.scanner.Text()
 		text = strings.TrimSpace(text)
 		log.Printf("parser: advance text: %s \n", text)
-		time.Sleep(1 * time.Second)
 		if text == "" || strings.HasPrefix(text, "//") {
 			continue
 		}
 		p.current = text
 		log.Printf("parser: advance: current line: %s \n", p.current)
-		time.Sleep(1 * time.Second)
 		return true
 	}
 }

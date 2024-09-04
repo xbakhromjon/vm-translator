@@ -24,7 +24,7 @@ go.work
 /.idea/.gitignore
 /.idea/misc.xml
 /.idea/modules.xml
-/test-files/stack-arithmetic/SimpleAdd.asm
+/test-files/stack-arithmetic/add/SimpleAdd.asm
 /.idea/vcs.xml
 /vm
 /vm-translator.iml
