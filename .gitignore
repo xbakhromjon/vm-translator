@@ -28,3 +28,4 @@ go.work
 /.idea/vcs.xml
 /vm
 /vm-translator.iml
+/test-files/stack-arithmetic/stack/StackTest.asm
