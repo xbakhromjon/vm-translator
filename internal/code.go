@@ -6,8 +6,68 @@ import (
 )
 
 const (
+	pushLocal = `@LCL
+D=M
+@%d
+D=D+A
+A=D
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1`
+
+	pushArgument = `@ARG
+D=M
+@%d
+D=D+A
+A=D
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1`
+
+	pushThis = `@THIS
+D=M
+@%d
+D=D+A
+A=D
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1`
+
+	pushThat = `@THAT
+D=M
+@%d
+D=D+A
+A=D
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1`
+
 	pushConstant = `@%d
-D=A
+D=M
+@SP
+A=M
+M=D
+@SP
+M=M+1`
+
+	pushTemp = `@5
+D=M
+@%d
+D=D+A
+A=D
+D=M
 @SP
 A=M
 M=D
@@ -179,8 +239,29 @@ func (c *Code) WriteArithmetic(command string) error {
 func (c *Code) WritePush(segment string, i uint32) error {
 	asm := ""
 	switch segment {
+	case "local":
+		asm = fmt.Sprintf(pushLocal, i)
+	case "argument":
+		asm = fmt.Sprintf(pushArgument, i)
+	case "this":
+		asm = fmt.Sprintf(pushThis, i)
+	case "that":
+		asm = fmt.Sprintf(pushThat, i)
 	case "constant":
 		asm = fmt.Sprintf(pushConstant, i)
+	case "temp":
+		asm = fmt.Sprintf(pushTemp, i)
+
+	}
+	fmt.Printf("code: write push: asm=%s\n", asm)
+	return c.writeAsm(asm)
+}
+
+func (c *Code) WritePop(segment string, i uint32) error {
+	asm := ""
+	switch segment {
+	case "local":
+		asm = fmt.Sprintf(pushLocal, i)
 	}
 	fmt.Printf("code: write push: asm=%s\n", asm)
 	return c.writeAsm(asm)

@@ -29,3 +29,4 @@ go.work
 /vm
 /vm-translator.iml
 /test-files/stack-arithmetic/stack/StackTest.asm
+/test-files/memory-segments/basic/BasicTest.asm

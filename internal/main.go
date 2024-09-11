@@ -64,18 +64,34 @@ func main() {
 
 		switch cmdType {
 		case C_PUSH:
-			arg1, err := parser.Arg1()
+			segment, err := parser.Arg1()
 			if err != nil {
 				log.Fatalf("get arg1 value: %s", err.Error())
 			}
-			log.Printf("push arg1 %v \n", arg1)
+			log.Printf("push arg1 %v \n", segment)
 
-			arg2, err := parser.Arg2()
+			index, err := parser.Arg2()
 			if err != nil {
 				log.Fatalf("get arg2 value: %s", err.Error())
 			}
-			log.Printf("push arg2 %v \n", arg2)
-			err = codeWriter.WritePush(arg1, arg2)
+			log.Printf("push arg2 %v \n", index)
+			err = codeWriter.WritePush(segment, index)
+			if err != nil {
+				log.Fatalf("write push value: %s", err.Error())
+			}
+		case C_POP:
+			segment, err := parser.Arg1()
+			if err != nil {
+				log.Fatalf("get arg1 value: %s", err.Error())
+			}
+			log.Printf("pop arg1 %v \n", segment)
+
+			index, err := parser.Arg2()
+			if err != nil {
+				log.Fatalf("get arg2 value: %s", err.Error())
+			}
+			log.Printf("pop arg2 %v \n", index)
+			err = codeWriter.WritePop(segment, index)
 			if err != nil {
 				log.Fatalf("write push value: %s", err.Error())
 			}
@@ -92,5 +108,4 @@ func main() {
 
 		log.Printf("parsed line: %s \n", parser.current)
 	}
-
 }
